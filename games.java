@@ -27,6 +27,10 @@ public class Games {
         return id;
     }
 
+    public Double getProbability() {
+        return this.probability;
+    }
+
     public void newId(Integer idPrev) {
         id=idPrev + 1;
     }
