@@ -1,15 +1,14 @@
-
-// import java.util.PriorityQueue;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Queue<Games> gamesWinner = new PriorityQueue<>();
-        String count = InterfaceInputGame.prompt(" Сколько раз будет проходить розыгрыш ");
+        List<Games> gamesWinner = new ArrayList<Games>();
+        String count = InterfaceInputGame.prompt(" Сколько раз будет проходить розыгрыш:  ");
         Integer counting = 0;
         try {
             counting = Integer.parseInt(count);
@@ -19,16 +18,16 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Необхоодимо ввести целочисленное число ");
         }
+        Queue<Games> gamesPriorityQueue = InterfaceInputGame.runMeaning();
         for (int i = 0; i < counting; i++) {
-            Queue<Games> gamesPriorityQueue = InterfaceInputGame.runMeaning(3);
-            gamesWinner.offer(InterfaceLottery.main(gamesPriorityQueue));
+            gamesWinner.add(InterfaceLottery.main(gamesPriorityQueue));
         }
         BufferedWriter outputWriter = null;
         outputWriter = new BufferedWriter(new FileWriter("winners.txt"));
-        for (int i = 0; i< counting; i++) {
-            outputWriter.write(gamesWinner.poll().name());
+        for (Games games : gamesWinner) {
+            outputWriter.write("The winner is " + games.name());
+            outputWriter.newLine();
         }
-        outputWriter.newLine();
         outputWriter.flush();
         outputWriter.close();
 

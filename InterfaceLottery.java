@@ -1,14 +1,6 @@
-// Критерии оценки
-// Приложение должно запускаться, записывать значения в файл.
-
 import java.util.Queue;
 
 public class InterfaceLottery {
-//      public Queue<Games> deleteGame(Queue<Games> gamesPriorityQueue){
-//         gamesPriorityQueue.remove();
-//         return gamesPriorityQueue;
-//     }
-    
     public static Games lottery(Queue<Games> gamesPriorityQueue){
         return gamesPriorityQueue.poll();
     }
